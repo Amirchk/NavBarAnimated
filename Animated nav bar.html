@@ -1,0 +1,122 @@
+<html>
+    <head>
+        
+    </head>
+    <!-- ------------------style CSS------------------------>
+    <style>
+        .chip{
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width:50px;
+            height:50px;
+            border-radius: 50px;
+            cursor: pointer;
+            z-index: 1;
+            background-color: black;
+        }
+        .chip:before{
+            content: "+";
+            position: absolute;
+            top: 0px;
+            left:0px;
+            width:100%;
+            height:100%;
+            font-size: 50px;
+            color: white;
+            text-align: center;
+            line-height: 50px;
+            transition-duration: 0.5s;
+        }
+        .chip.active:before{
+            background-color: yellow;
+            transform:rotate(405deg);
+            color: black;
+            border-radius: 50px;
+        }
+        .overlay{
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width:50px;
+            height:50px;
+            border-radius: 50px;
+            cursor: pointer;
+            z-index: -1;
+            background-color: black;
+            transition: transform 0.3s;
+        }
+        .overlay.active{
+            transform: scale(100,100);
+        }
+        .menu{
+            width: 100%;
+            height:100%;
+            overflow: auto;
+            z-index: 1;
+            visibility: hidden;
+        }
+        .menu.active{
+            transition-delay: 0.2s;
+            visibility: visible;
+        }
+        .menu ul{
+            position :absolute;
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+        }
+        .menu ul li{
+            list-style-type: none;
+        }
+        .menu ul li a{
+            position: relative;
+            font-size: 30px;
+            text-decoration: none;
+            color:white;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.95);
+            font-weight: bold;
+        }
+        .menu ul li a:before{
+            content: '';
+            position: absolute;
+            z-index: -1;
+            left: -2px;
+            bottom: 0;
+            width: 100%;
+            height: 10px;
+            background: aqua;
+            transform: scale(0);
+            transform-origin: left;
+            transition: transform 0.3s;
+        }
+        .menu ul li a:hover:before{
+            transform: scale(1);
+        }
+        
+    </style>
+    <script
+  src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <body>
+        <div class="chip" ></div>
+        <div class="overlay" ></div>
+        <div class="menu" >
+            <ul>
+                <li> <a href="#">Home</a></li>
+                <li> <a href="#">Services</a></li>
+                <li> <a href="#">About Us</a></li>
+                <li> <a href="#">Terms</a></li>
+            </ul>
+        </div>
+        <!-- ------------------JAVASCRIPT------------------------>
+        <script>
+            $(document).ready(function(){
+                $('.chip').click(function(){
+                $('.chip').toggleClass('active')
+                $('.overlay').toggleClass('active')
+                $('.menu').toggleClass('active')
+                })
+            })
+        </script>
+    </body>
+</html>
